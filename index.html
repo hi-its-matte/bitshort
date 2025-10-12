@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShortApp – URL Shortener</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🔗 ShortApp</h1>
+    
+    <form id="shortenForm">
+      <input type="url" id="longUrl" placeholder="Incolla la URL lunga" required>
+      <input type="text" id="customShort" placeholder="Alias personalizzato (opzionale)">
+      <button type="submit">Accorcia</button>
+    </form>
+
+    <p id="error" class="error" style="display:none;"></p>
+    <div id="result" class="result" style="display:none;"></div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
