@@ -3,24 +3,399 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShortApp – URL Shortener</title>
-  <link rel="stylesheet" href="style.css">
+  <title>ShortApp - URL Shortener by Mattedev</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(42, 42, 68, 0.9);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      transition: all 0.3s;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #6c63ff;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background: #6c63ff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    button:hover:not(:disabled) {
+      background: #5a52d5;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+    }
+
+    button:disabled {
+      background: #4a4a6a;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(108, 99, 255, 0.1);
+      border-radius: 10px;
+      border-left: 4px solid #6c63ff;
+      display: none;
+    }
+
+    .result.show {
+      display: block;
+      animation: slideIn 0.3s ease;
+    }
+
+    .result.error {
+      background: rgba(255, 77, 77, 0.1);
+      border-left-color: #ff4d4d;
+      color: #ff9999;
+    }
+
+    .result h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      opacity: 0.8;
+    }
+
+    .short-url {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .short-url a {
+      color: #6c63ff;
+      text-decoration: none;
+      font-weight: bold;
+      word-break: break-all;
+      flex: 1;
+    }
+
+    .copy-btn {
+      background: rgba(108, 99, 255, 0.2);
+      border: 1px solid #6c63ff;
+      color: #6c63ff;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: rgba(108, 99, 255, 0.3);
+    }
+
+    .copy-btn.copied {
+      background: rgba(76, 175, 80, 0.2);
+      border-color: #4caf50;
+      color: #4caf50;
+    }
+
+    .provider-badge {
+      display: inline-block;
+      background: rgba(108, 99, 255, 0.2);
+      padding: 4px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      opacity: 0.7;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: #6c63ff;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .short-url {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .copy-btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>🔗 ShortApp (Created By Mattedev)</h1>
+    <h1>
+      <span>🔗</span>
+      ShortApp (Created By Mattedev)
+    </h1>
     
     <form id="shortenForm">
-      <input type="url" id="longUrl" placeholder="Incolla la URL lunga" required>
-      <input type="text" id="customShort" placeholder="Alias personalizzato (opzionale)">
-      <button type="submit">Accorcia</button>
+      <div class="input-group">
+        <input 
+          type="url" 
+          id="longUrl" 
+          placeholder="https://mattedev.aurastudioitalia.it/" 
+          required
+        >
+      </div>
+      
+      <div class="input-group">
+        <input 
+          type="text" 
+          id="customAlias" 
+          placeholder="Alias personalizzato (opzionale)"
+          maxlength="30"
+          pattern="[a-zA-Z0-9_-]+"
+          title="Solo lettere, numeri, trattini e underscore"
+        >
+      </div>
+      
+      <button type="submit" id="submitBtn">
+        <span id="btnText">Accorcia</span>
+      </button>
     </form>
- <p><strong>Powered by <a href="https://is.gd" target="_blank">is.gd</a></strong></p>
 
-    <p id="error" class="error" style="display:none;"></p>
-    <div id="result" class="result" style="display:none;"></div>
+    <div id="result" class="result"></div>
+
+    <div class="footer">
+      Powered by <a href="https://is.gd" target="_blank">is.gd</a> & <a href="https://v.gd" target="_blank">v.gd</a>
+    </div>
   </div>
 
-  <script src="main.js"></script>
+  <script>
+    const API_URL = 'https://url-backend-7ues.onrender.com/shorten';
+    
+    const form = document.getElementById('shortenForm');
+    const resultDiv = document.getElementById('result');
+    const btnText = document.getElementById('btnText');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function showResult(content, isError = false) {
+      resultDiv.className = 'result show' + (isError ? ' error' : '');
+      resultDiv.innerHTML = content;
+    }
+
+    async function copyToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (err) {
+        // Fallback per browser vecchi
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        const success = document.execCommand('copy');
+        document.body.removeChild(textarea);
+        return success;
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const longUrl = document.getElementById('longUrl').value.trim();
+      const customAlias = document.getElementById('customAlias').value.trim();
+
+      // Validazione URL
+      try {
+        new URL(longUrl);
+      } catch {
+        showResult('⚠️ URL non valido. Assicurati di includere https:// o http://', true);
+        return;
+      }
+
+      // Loading state
+      submitBtn.disabled = true;
+      btnText.innerHTML = '<span class="loading-spinner"></span> Accorciamento...';
+      resultDiv.className = 'result';
+      resultDiv.innerHTML = '';
+
+      try {
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            long: longUrl,
+            short: customAlias || undefined
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || `Errore HTTP ${response.status}`);
+        }
+
+        // Successo
+        const resultHTML = `
+          <h3>✅ URL Accorciato con successo!</h3>
+          <div class="short-url">
+            <a href="${data.shortUrl}" target="_blank" id="shortUrlLink">${data.shortUrl}</a>
+            <button class="copy-btn" onclick="handleCopy('${data.shortUrl}', this)">
+              📋 Copia
+            </button>
+          </div>
+          <div class="provider-badge">
+            Provider: ${data.provider} (${data.domain})
+          </div>
+        `;
+        
+        showResult(resultHTML, false);
+
+      } catch (error) {
+        console.error('Errore:', error);
+        
+        let errorMessage = '❌ Errore durante l\'accorciamento';
+        
+        if (error.message.includes('Failed to fetch')) {
+          errorMessage = '⚠️ Impossibile contattare il server. Il backend potrebbe essere in sleep (attendi 30 secondi e riprova).';
+        } else if (error.message.includes('rate limit')) {
+          errorMessage = '⏱️ Troppi tentativi. Attendi qualche minuto prima di riprovare.';
+        } else if (error.message.includes('already')) {
+          errorMessage = '⚠️ Questo alias personalizzato è già occupato. Prova un altro nome.';
+        } else {
+          errorMessage = `❌ ${error.message}`;
+        }
+        
+        showResult(errorMessage, true);
+      } finally {
+        submitBtn.disabled = false;
+        btnText.textContent = 'Accorcia';
+      }
+    });
+
+    // Funzione globale per il copy
+    window.handleCopy = async function(url, button) {
+      const success = await copyToClipboard(url);
+      
+      if (success) {
+        button.textContent = '✅ Copiato!';
+        button.classList.add('copied');
+        
+        setTimeout(() => {
+          button.textContent = '📋 Copia';
+          button.classList.remove('copied');
+        }, 2000);
+      } else {
+        button.textContent = '❌ Errore';
+        setTimeout(() => {
+          button.textContent = '📋 Copia';
+        }, 2000);
+      }
+    };
+
+    // Auto-focus sul campo URL
+    document.getElementById('longUrl').focus();
+  </script>
 </body>
 </html>
