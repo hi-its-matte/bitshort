@@ -34,11 +34,17 @@
       const longUrl = document.getElementById('longUrl').value.trim();
       const customAlias = document.getElementById('customAlias').value.trim();
 
+      // Normalizza l'URL aggiungendo https:// se mancante
+      let normalizedUrl = longUrl;
+      if (!longUrl.match(/^https?:\/\//i)) {
+        normalizedUrl = 'https://' + longUrl;
+      }
+
       // Validazione URL
       try {
-        new URL(longUrl);
+        new URL(normalizedUrl);
       } catch {
-        showResult('⚠️ URL non valido. Assicurati di includere https:// o http://', true);
+        showResult('⚠️ URL non valido. Inserisci un URL corretto (es: example.com o www.example.com)', true);
         return;
       }
 
