@@ -1,8 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bit Short - Shorten your links for free">
+  <title>Bit Short - Free URL Shortener</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <div class="top-bar">
+    <div class="top-bar-links">
+      <strong>Bit Short</strong> | 
+      <a href="#privacy">Privacy Policy</a> | 
+      <a href="#terms">Terms Of Service</a>
+    </div>
+  </div>
 
-<h>WE ARE SORRY</h>
-<h1>Maintenance of the website. for support, please contact support@mattedev.com
-</h1>
-  <h1>Al termine, i Termini di Servizio e/o la Privacy Policy potrebbero essere aggiornati. | The Terms of Service and/or Privacy Policy may be updated upon completion of the maintenance.</h1>
-<a href="mailto:support@mattedev.com">SUPPORT</a>
+  <!-- Hero Section -->
+  <div class="top-section">
+    <h1>
+      SHORTEN YOUR LINK<br>
+      FOR FREE<span class="asterisk">*</span>
+    </h1>
+    <p class="disclaimer">*read terms of service for more info</p>
+  </div>
+
+  <!-- Main Content Section -->
+  <div class="bottom-section">
+    <!-- Wave Divider SVG -->
+    <div class="wave-divider">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+      </svg>
+    </div>
+
+    <div class="input-container">
+      <!-- Input Form -->
+      <form id="shortenForm">
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="longUrl" 
+            class="url-input"
+            placeholder="https://example.com/your-long-link"
+            autocomplete="off"
+            required
+            aria-label="URL to shorten"
+          >
+          <button type="submit" id="submitBtn">
+            <span id="btnText">Shorten</span>
+          </button>
+        </div>
+
+        <!-- Custom Alias Input (Optional) -->
+        <div class="custom-alias-wrapper">
+          <input 
+            type="text" 
+            id="customAlias" 
+            placeholder="custom-alias (optional)"
+            autocomplete="off"
+            maxlength="50"
+            aria-label="Custom alias"
+          >
+          <small class="hint">Only letters, numbers, dashes and underscores</small>
+        </div>
+      </form>
+
+      <!-- Result Box -->
+      <div id="result" class="result"></div>
+    </div>
+  </div>
+  <footer class="footer">
+    Powered by <a href="https://is.gd" target="_blank">is.gd</a> & <a href="https://v.gd" target="_blank">v.gd</a> •
+    <a href="/privacy.html">Privacy Policy</a> •
+    <a href="/terms.html">Terms of Service</a>
+    <p class="disclaimer">*read terms of service for more info</p>
+    </footer>
+  <script src="main.js"></script>
+
+</body>
+</html>
