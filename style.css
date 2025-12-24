@@ -6,28 +6,28 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Arial', sans-serif;
-      background: #4a4a4a;
+      font-family: "Inter", sans-serif;
+      background: #282828;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      color: #fff;
+      color: #eaeaea;
       overflow-x: hidden;
     }
 
     /* ===== TOP NAVIGATION BAR ===== */
     .top-bar {
-      background: transparent;
+      background: #656160;
       padding: 18px 40px;
       text-align: center;
-      border: 3px solid white;
+      border: 3px solid #858482;
       border-radius: 15px;
       margin: 25px 40px;
       transition: all 0.3s ease;
     }
 
     .top-bar:hover {
-      background: rgba(255, 255, 255, 0.05);
+      background: #707070;
     }
 
     .top-bar-links {
@@ -37,14 +37,14 @@
     }
 
     .top-bar-links a {
-      color: white;
+      color: #eaeaea;
       text-decoration: none;
       margin: 0 8px;
       transition: opacity 0.2s ease;
     }
 
     .top-bar-links a:hover {
-      opacity: 0.8;
+      color: #fff;
       text-decoration: underline;
     }
 
@@ -74,42 +74,21 @@
       font-size: 4rem;
       vertical-align: super;
       margin-left: 8px;
-      color: #5a9ef5;
+      color: #858482;
     }
 
     .disclaimer {
-      color: rgba(255, 255, 255, 0.85);
+      color: #858482;
       font-size: 15px;
       margin-top: 15px;
       font-weight: 400;
     }
 
-    /* ===== BOTTOM SECTION WITH WAVE ===== */
+    /* ===== BOTTOM SECTION ===== */
     .bottom-section {
       position: relative;
-      background: #5a9ef5;
-      padding: 100px 20px 150px;
-    }
-
-    .wave-divider {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-      line-height: 0;
-      transform: translateY(-99%);
-    }
-
-    .wave-divider svg {
-      position: relative;
-      display: block;
-      width: 100%;
-      height: 150px;
-    }
-
-    .wave-divider .shape-fill {
-      fill: #5a9ef5;
+      background: #656160;
+      padding: 80px 20px 150px;
     }
 
     /* ===== INPUT CONTAINER ===== */
@@ -123,17 +102,17 @@
     .input-wrapper {
       display: flex;
       align-items: stretch;
-      background: white;
-      border: 4px solid white;
+      background: #282828;
+      border: 4px solid #858482;
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
       transition: transform 0.2s ease;
     }
 
     .input-wrapper:focus-within {
       transform: translateY(-2px);
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 18px 60px rgba(133, 132, 130, 0.3);
     }
 
     input[type="text"].url-input {
@@ -142,22 +121,22 @@
       border: none;
       font-size: 20px;
       background: transparent;
-      color: #5a9ef5;
+      color: #eaeaea;
       outline: none;
       font-weight: 500;
     }
 
     input[type="text"].url-input::placeholder {
-      color: rgba(90, 158, 245, 0.6);
+      color: #858482;
       font-weight: 500;
     }
 
     button[type="submit"] {
       padding: 25px 50px;
-      background: #5a9ef5;
-      color: white;
+      background: #858482;
+      color: #282828;
       border: none;
-      border-left: 4px solid #4a8ee5;
+      border-left: 4px solid #656160;
       font-size: 20px;
       font-weight: 900;
       cursor: pointer;
@@ -168,7 +147,9 @@
     }
 
     button[type="submit"]:hover:not(:disabled) {
-      background: #4a8ee5;
+      background: #9a9997;
+      box-shadow: 0 7px 22px rgba(133, 132, 130, 0.4);
+      transform: translateY(-3px);
     }
 
     button[type="submit"]:active:not(:disabled) {
@@ -183,39 +164,39 @@
     /* ===== CUSTOM ALIAS INPUT ===== */
     .custom-alias-wrapper {
       margin-top: 20px;
-      background: rgba(255, 255, 255, 0.95);
+      background: #282828;
       border-radius: 15px;
       padding: 20px 35px;
-      border: 4px solid white;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      border: 4px solid #858482;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     }
 
     #customAlias {
       width: 100%;
       padding: 15px 0;
       border: none;
-      border-bottom: 2px solid rgba(90, 158, 245, 0.3);
+      border-bottom: 2px solid #656160;
       font-size: 18px;
       background: transparent;
-      color: #5a9ef5;
+      color: #eaeaea;
       outline: none;
       font-weight: 500;
       transition: border-color 0.3s ease;
     }
 
     #customAlias:focus {
-      border-bottom-color: #5a9ef5;
+      border-bottom-color: #858482;
     }
 
     #customAlias::placeholder {
-      color: rgba(90, 158, 245, 0.5);
+      color: #858482;
     }
 
     .hint {
       display: block;
       margin-top: 8px;
       font-size: 13px;
-      color: #5a9ef5;
+      color: #858482;
       opacity: 0.7;
     }
 
@@ -223,11 +204,11 @@
     .result {
       margin-top: 50px;
       padding: 30px 40px;
-      background: rgba(255, 255, 255, 0.98);
+      background: #282828;
       border-radius: 15px;
-      border: 4px solid white;
+      border: 4px solid #858482;
       display: none;
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
     }
 
     .result.show {
@@ -236,12 +217,12 @@
     }
 
     .result.error {
-      background: rgba(255, 100, 100, 0.95);
+      background: #2a1111;
       border-color: #ff4444;
     }
 
     .result h3 {
-      color: #5a9ef5;
+      color: #858482;
       font-size: 18px;
       font-weight: 800;
       text-transform: uppercase;
@@ -265,14 +246,14 @@
       display: flex;
       align-items: center;
       gap: 20px;
-      background: #f5f5f5;
+      background: #656160;
       padding: 22px 30px;
       border-radius: 12px;
       margin-bottom: 15px;
     }
 
     .short-url a {
-      color: #5a9ef5;
+      color: #eaeaea;
       text-decoration: none;
       font-weight: 700;
       font-size: 18px;
@@ -282,14 +263,14 @@
     }
 
     .short-url a:hover {
-      color: #4a8ee5;
+      color: #fff;
       text-decoration: underline;
     }
 
     /* ===== COPY BUTTON ===== */
     .copy-btn {
-      background: #5a9ef5;
-      color: white;
+      background: #858482;
+      color: #282828;
       padding: 14px 30px;
       border-radius: 10px;
       cursor: pointer;
@@ -303,7 +284,7 @@
     }
 
     .copy-btn:hover {
-      background: #4a8ee5;
+      background: #9a9997;
       transform: scale(1.05);
     }
 
@@ -317,8 +298,8 @@
 
     /* ===== PROVIDER BADGE ===== */
     .provider-badge {
-      background: rgba(90, 158, 245, 0.1);
-      color: #5a9ef5;
+      background: #656160;
+      color: #eaeaea;
       padding: 12px 20px;
       border-radius: 8px;
       font-size: 14px;
@@ -331,8 +312,8 @@
       display: inline-block;
       width: 20px;
       height: 20px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-top-color: white;
+      border: 3px solid #656160;
+      border-top-color: #858482;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
     }
@@ -386,10 +367,6 @@
         padding: 80px 20px 120px;
       }
 
-      .wave-divider svg {
-        height: 100px;
-      }
-
       .input-wrapper {
         flex-direction: row;
       }
@@ -438,7 +415,7 @@
 
       button[type="submit"] {
         border-left: none;
-        border-top: 4px solid #4a8ee5;
+        border-top: 4px solid #656160;
       }
 
       .result {
@@ -451,13 +428,12 @@
     }
 
     /* ===== FOOTER ===== */
-    /* Support both .site-footer (previous) and the footer markup in index.html (.footer / <footer class="footer">) */
     .footer,
     .site-footer {
-      background: rgba(0, 0, 0, 0.25);
-      color: rgba(255, 255, 255, 0.9);
+      background: #656160;
+      color: #858482;
       padding: 18px 24px;
-      border-top: 3px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid #858482;
       margin-top: auto;
       display: flex;
       align-items: center;
@@ -467,10 +443,9 @@
       font-size: 14px;
     }
 
-    /* Link styles used inside the footer */
     .footer a,
     .site-footer a {
-      color: rgba(255, 255, 255, 0.9);
+      color: #eaeaea;
       text-decoration: none;
       font-weight: 700;
       transition: color 0.15s, opacity 0.15s;
@@ -479,21 +454,19 @@
 
     .footer a:hover,
     .site-footer a:hover {
-      color: #5a9ef5;
+      color: #fff;
       opacity: 0.9;
       text-decoration: underline;
     }
 
-    /* smaller note / disclaimer inside footer (index.html uses class="disclaimer") */
     .footer .disclaimer,
     .site-footer .footer-note,
     .footer p.disclaimer {
       margin: 0;
-      color: rgba(255, 255, 255, 0.75);
+      color: #858482;
       font-size: 13px;
     }
 
-    /* keep any existing social/container styles compatible */
     .footer-container,
     .footer .footer-container,
     .site-footer .footer-container {
@@ -506,7 +479,6 @@
       flex-wrap: wrap;
     }
 
-    /* small screens */
     @media (max-width: 600px) {
       .footer,
       .site-footer {
